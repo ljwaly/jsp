@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<configuration>
+
+
+	<!-- ======================================================================================================= -->
+	<!-- 控制台输出的格式控制 -->
+
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+
+			<!-- %m输出的信息, -->
+			<!-- %p日志级别, -->
+			<!-- %t线程名, -->
+			<!-- %d日期, -->
+			<!-- %c类的全名 -->
+
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %p (%file:%line\)- %m%n
+			</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<root level="info">
+		<appender-ref ref="console" />
+	</root>
+
+
+
+
+	<!-- ======================================================================================================= -->
+	<!-- 文件日志的格式控制 -->
+
+	<appender name="baselog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>log/log-jsp/base.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>log/base.log.%d.%i</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+
+				<maxFileSize>64 MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>
+				%d %p (%file:%line\)- %m%n
+			</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<!-- 记录com.ljw包 产出的日志 -->
+	<!-- 控制log级别为DEBUG级别，所有此级别的日志存入baselog中 -->
+	<logger name="com.ljw.*" level="info">
+		<appender-ref ref="baselog" />
+	</logger>
+
+
+	<!-- ======================================================================================================= -->
+	<!-- 文件日志的格式控制：错误异常日志 -->
+
+<!-- 	<appender name="systemErrorLoggerAppender" class="org.apache.log4j.DailyRollingFileAppender"> -->
+<!-- 		<param name="File" value="${user.home}/log/log-http/SYSTEM_ERROR_LOG.txt" /> -->
+<!-- 		<param name="DatePattern" value="'.'yyyyMMdd" /> -->
+<!-- 		<param name="Append" value="true" /> -->
+<!-- 		<param name="Encoding" value="UTF-8" /> -->
+<!-- 		<layout class="org.apache.log4j.PatternLayout"> -->
+<!-- 			<param name="ConversionPattern" value="%m%n" /> -->
+<!-- 		</layout> -->
+<!-- 	</appender> -->
+
+<!-- 	<logger name="systemErrorLogger" additivity="false"> -->
+<!-- 		<level value="INFO" /> -->
+<!-- 		<appender-ref ref="systemErrorLoggerAppender" /> -->
+<!-- 	</logger> -->
+
+
+	<!-- ======================================================================================================= -->
+	<!-- 文件日志的格式控制 -->
+<!-- 	<appender name="systemAnalysisLoggerAppender" class="org.apache.log4j.DailyRollingFileAppender"> -->
+<!-- 		<param name="File" value="${user.home}/log/log-http/SYSTEM_ANALYSIS_LOG.txt" /> -->
+<!-- 		<param name="DatePattern" value="'.'yyyyMMdd" /> -->
+<!-- 		<param name="Append" value="true" /> -->
+<!-- 		<param name="Encoding" value="UTF-8" /> -->
+<!-- 		<layout class="org.apache.log4j.PatternLayout"> -->
+<!-- 			<param name="ConversionPattern" value="%m%n" /> -->
+<!-- 		</layout> -->
+<!-- 	</appender> -->
+
+<!-- 	<logger name="systemAnalysisLogger" additivity="false"> -->
+<!-- 		<level value="INFO" /> -->
+<!-- 		<appender-ref ref="systemAnalysisLoggerAppender" /> -->
+<!-- 	</logger> -->
+
+
+	<!-- ======================================================================================================= -->
+	<!-- 文件日志的格式控制 -->
+
+<!-- 	<appender name="CatalinaOut" class="org.apache.log4j.DailyRollingFileAppender"> -->
+<!-- 		<param name="File" value="${user.home}/log/log-info/catalina.txt" /> -->
+<!-- 		<param name="DatePattern" value="'.'yyyy-MM-dd" /> -->
+<!-- 		<param name="Append" value="true" /> -->
+<!-- 		<param name="Encoding" value="UTF-8" /> -->
+<!-- 		<param name="BufferedIO" value="true" /> -->
+<!-- 		<param name="BufferSize" value="8192" /> -->
+<!-- 		<layout class="org.apache.log4j.PatternLayout"> -->
+<!-- 			<param name="ConversionPattern" -->
+<!-- 				value="[SUP3][%d{yyyyMMdd HH:mm:ss SSS}]%c{1}.%M(%L) | %m%n" /> -->
+<!-- 		</layout> -->
+<!-- 	</appender> -->
+
+<!-- 	<root> -->
+<!-- 		<level value="INFO" /> -->
+<!-- 		<appender-ref ref="CatalinaOut" /> -->
+<!-- 	</root> -->
+
+
+
+
+</configuration>  
